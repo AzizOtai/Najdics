@@ -1,0 +1,3 @@
+# MacBook: annotation + local Whisper via Apple MLX
+mlx-whisper>=0.4
+sounddevice>=0.4.6

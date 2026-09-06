@@ -1,0 +1,33 @@
+# --- secrets ---
+.env
+*.key
+
+# --- bulk data: NEVER commit ---
+data
+data/
+*.wav
+*.mp3
+*.m4a
+*.flac
+checkpoints/
+drafts/
+
+# --- PII: never, under any circumstances ---
+*consent*
+*participant*
+*_pii*
+90-RESTRICTED*
+
+# --- python ---
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# --- os ---
+.DS_Store
+Thumbs.db
+
+# --- tooling ---
+*.pfsx
+logs/
