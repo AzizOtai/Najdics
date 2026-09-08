@@ -8,10 +8,12 @@ if [[ "$ROLE" != "mac" && "$ROLE" != "gpu" ]]; then
   echo "usage: $0 [mac|gpu]" >&2; exit 1
 fi
 
-REPO="$HOME/najdics"
+REPO="${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 DATA="$HOME/najdics-data"
+PYTHON="${PYTHON_BIN:-$(which python3.11 2>/dev/null || which python3)}"
 
 echo "==> role: $ROLE"
+echo "==> repo: $REPO"
 
 # --- guard: repo must not live inside a cloud-synced folder ---
 case "$REPO" in
@@ -34,11 +36,11 @@ fi
 # --- python env ---
 cd "$REPO"
 if [[ ! -d .venv ]]; then
-  python3 -m venv .venv
-  echo "==> created .venv"
+  "$PYTHON" -m venv .venv
+  echo "==> created .venv with $("$PYTHON" --version)"
 fi
 source .venv/bin/activate
-pip install --quiet --upgrade pip
+pip install --upgrade pip
 
 pip install --quiet -r requirements.txt
 if [[ "$ROLE" == "mac" ]]; then
